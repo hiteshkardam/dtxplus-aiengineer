@@ -1,0 +1,43 @@
+aiohappyeyeballs @ file:///croot/aiohappyeyeballs_1725434011349/work
+aiohttp @ file:///croot/aiohttp_1725527756643/work
+aiosignal @ file:///tmp/build/80754af9/aiosignal_1637843061372/work
+annotated-types @ file:///croot/annotated-types_1709542908624/work
+anyio @ file:///croot/anyio_1706220167567/work
+asgiref @ file:///croot/asgiref_1724072470684/work
+async-timeout @ file:///croot/async-timeout_1703096998144/work
+attrs @ file:///work/perseverance-python-buildout/croot/attrs_1698845858439/work
+Brotli @ file:///croot/brotli-split_1714483155106/work
+certifi @ file:///croot/certifi_1725551672989/work/certifi
+charset-normalizer @ file:///croot/charset-normalizer_1721748349566/work
+Django @ file:///croot/django_1724964382619/work
+djangorestframework @ file:///home/conda/feedstock_root/build_artifacts/djangorestframework_1718812538421/work
+frozenlist @ file:///work/perseverance-python-buildout/croot/frozenlist_1698886842990/work
+greenlet @ file:///croot/greenlet_1702059959679/work
+h11 @ file:///croot/h11_1706652277403/work
+httpcore @ file:///croot/httpcore_1706728464539/work
+httpx @ file:///croot/httpx_1723474802858/work
+idna @ file:///croot/idna_1714398848350/work
+jsonpatch @ file:///croot/jsonpatch_1714483231291/work
+jsonpointer==2.1
+langchain @ file:///home/conda/feedstock_root/build_artifacts/langchain_1726390752915/work
+langchain-core @ file:///home/conda/feedstock_root/build_artifacts/langchain-core_1726888409762/work
+langchain-text-splitters @ file:///home/conda/feedstock_root/build_artifacts/langchain-text-splitters_1726389599337/work
+langsmith @ file:///home/conda/feedstock_root/build_artifacts/langsmith_1726805584872/work
+multidict @ file:///croot/multidict_1701096859099/work
+numpy @ file:///croot/numpy_and_numpy_base_1708638617955/work/dist/numpy-1.26.4-cp312-cp312-linux_x86_64.whl#sha256=b8e59fcb10ab071cbeded47aed247ddfa1c902d595848c27f82021340e226134
+orjson @ file:///croot/orjson_1711143063525/work/target/wheels/orjson-3.9.15-cp312-cp312-linux_x86_64.whl#sha256=620fa7c1189ce4a162e91f49b326ccc3bf5e6dbe6eb0e14aebc1060b5515f2c8
+packaging @ file:///croot/packaging_1720101850331/work
+pydantic @ file:///croot/pydantic_1725040526370/work
+pydantic_core @ file:///croot/pydantic-core_1724790363792/work
+PySocks @ file:///work/perseverance-python-buildout/croot/pysocks_1698845478203/work
+PyYAML @ file:///work/perseverance-python-buildout/croot/pyyaml_1698849903511/work
+requests @ file:///croot/requests_1721410876868/work
+setuptools==75.1.0
+sniffio @ file:///croot/sniffio_1705431295498/work
+SQLAlchemy @ file:///croot/sqlalchemy_1725885050993/work
+sqlparse @ file:///work/perseverance-python-buildout/croot/sqlparse_1698874574933/work
+tenacity @ file:///croot/tenacity_1721222508356/work
+typing_extensions @ file:///croot/typing_extensions_1715268824938/work
+urllib3 @ file:///croot/urllib3_1718912636303/work
+wheel==0.44.0
+yarl @ file:///croot/yarl_1725976495189/work

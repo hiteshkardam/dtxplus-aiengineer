@@ -1,0 +1,8 @@
+name: dtxplus
+channels:
+  - defaults
+dependencies:
+  - django
+  - conda-forge::djangorestframework
+  - conda-forge::langchain
+prefix: /home/mafia/.conda/envs/dtxplus
