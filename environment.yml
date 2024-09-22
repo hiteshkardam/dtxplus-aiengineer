@@ -6,4 +6,5 @@ dependencies:
   - conda-forge::djangorestframework
   - conda-forge::langchain
   - anaconda::psycopg2
+  - conda-forge::environs
 prefix: /home/mafia/.conda/envs/dtxplus
