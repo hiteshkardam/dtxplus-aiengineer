@@ -11,4 +11,9 @@ pip freeze > requirements.txt<br/>
 
 # Local instance
 docker-compose up -d<br/>
+python dtxplus_patient_chat/manage.py loaddata patient.json<br/>
 python dtxplus_patient_chat/manage.py runserver<br/>
+<br/>
+superuser:<br/>
+admin<br/>
+adminadmin<br/>
