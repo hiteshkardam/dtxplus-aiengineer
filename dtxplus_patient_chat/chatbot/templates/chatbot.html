@@ -1,4 +1,3 @@
-<!-- chatbot.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,6 +7,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
+            background-color: #212121;
         }
         #chat-container {
             display: flex;
@@ -22,15 +22,22 @@
             margin: 5px 0;
             padding: 10px;
             border-radius: 5px;
+            position: relative;
         }
         .received {
-            background-color: #f1f1f1;
             align-self: flex-start;
+            color: rgb(255, 255, 255);
         }
         .sent {
-            background-color: #007bff;
-            color: white;
+            background-color: #676767;
+            color: rgb(0, 0, 0);
             align-self: flex-end;
+        }
+        .timestamp {
+            display: block;
+            font-size: 0.8em;
+            color: #aaaaaa;
+            margin-top: 5px;
         }
         #input-container {
             display: flex;
@@ -61,7 +68,8 @@
         sendButton.onclick = function() {
             const message = messageInput.value;
             if (message.trim()) {
-                appendMessage(message, 'sent');
+                const timestamp = new Date().toLocaleString(); // Get current timestamp
+                appendMessage(message, 'sent', timestamp);
                 messageInput.value = '';
 
                 // Send message to the server
@@ -76,16 +84,16 @@
                 .then(response => response.json())
                 .then(data => {
                     if (data.response) {
-                        appendMessage(data.response, 'received');
+                        appendMessage(data.response, 'received', data.timestamp);
                     }
                 });
             }
         };
 
-        function appendMessage(message, type) {
+        function appendMessage(message, type, timestamp) {
             const div = document.createElement('div');
             div.className = `message ${type}`;
-            div.textContent = message;
+            div.innerHTML = `${message}<span class="timestamp">${timestamp}</span>`;
             chatContainer.appendChild(div);
             chatContainer.scrollTop = chatContainer.scrollHeight; // Auto scroll to bottom
         }
