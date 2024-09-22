@@ -1,0 +1,18 @@
+[
+    {
+        "model": "chatbot.patient",
+        "pk": 1,
+        "fields": {
+            "first_name": "DTX",
+            "last_name": "Plus",
+            "date_of_birth": "2023-01-27",
+            "phone_number": "551-555-1234",
+            "email": "testuser@dtxplus.com",
+            "medical_condition": "Hypertension",
+            "medication_regimen": "Medication A, Medication B",
+            "last_appointment": "2024-09-01T10:30:00Z",
+            "next_appointment": "2024-12-01T10:30:00Z",
+            "doctor_name": "Dr. Desai"
+        }
+    }
+]
