@@ -1,17 +1,17 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 from django.utils import timezone
-import random
+import requests
+import json
+from environs import Env
+from langchain_ollama import ChatOllama
+from .rag import with_message_history
+from chatbot.models import Patient
 
-# Test Responses
-responses = [
-    "Hello!",
-    "How can I help you?",
-    "Hi!",
-    "How are you?"
-]
+env = Env()
+env.read_env()
 
-# TO-DO: ADD LOGIC TO STORE ALL THE CHATS WITH CHAT IDS TO POSTGRES IN JSON AND DISPLAY THE LIST HERE 
+# TO-DO: ADD LOGIC TO DISPLAY ALL THE CHATS WITH CHAT IDS TO POSTGRES AND DISPLAY THE LIST HERE 
 def allchats_view(request):
     pass
 
@@ -20,12 +20,23 @@ def chatbot_view(request):
 
 def send_message(request):
     if request.method == 'POST':
-        user_message = request.POST.get('message')
-        bot_response = random.choice(responses)
-        current_time = timezone.now().strftime('%Y-%m-%d %H:%M:%S')
-        return JsonResponse({
-            'response': bot_response,
-            'timestamp': current_time
-        })
-    return JsonResponse({'response': 'Invalid request'}, status=400)
 
+        request_data = json.loads(request.body)
+        user_message = request_data.get('message', '')
+        current_time = timezone.now().strftime('%Y-%m-%d %H:%M:%S')
+
+        try:
+            response = with_message_history.invoke(
+            {"ability": "medical", "question": user_message},
+            # TO-DO: LOAD USER AND CONVERSATION IDS FROM DB
+            config={"configurable": {"user_id": "123", "conversation_id": "1"}}
+            )
+            # print(response)
+            return JsonResponse({
+            'response': response.content,
+            'timestamp': current_time
+        }, safe=False)
+        except requests.exceptions.RequestException as e:
+            return JsonResponse({"error": str(e)}, status=500)
+
+    return JsonResponse({'response': 'Invalid request'}, status=400)
