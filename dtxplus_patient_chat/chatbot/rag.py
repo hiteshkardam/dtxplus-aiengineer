@@ -17,15 +17,17 @@ from environs import Env
 env = Env()
 env.read_env()
 
-# TO-DO: ADD USER DETAILS IN THE PROMPT
 prompt = ChatPromptTemplate.from_messages([
-    ("system", "You're an assistant who's good at {ability}"),
+    ("system", """You're an assistant who should only respond to health-related topics such as:
+    General health and lifestyle inquiries, Questions about the patient’s medical condition, medication regimen, diet, etc and Requests from the patient to their doctor such as medication changes.
+    You should filter out and ignore any unrelated, sensitive, or controversial topics.
+    Under any circumstances, only answer related questions using patients's details : {user_info}"""),
     MessagesPlaceholder(variable_name="history"),
     ("human", "{question}"),
 ])
 
 # TO-DO: FIX HARD CODED MODEL
-chain = prompt | ChatOllama(model = "llama3.1:8b-instruct-fp16",temperature = 0.8)
+chain = prompt | ChatOllama(model = "llama3.1:8b-instruct-fp16",temperature = 0.2)
 
 # TO-DO: SAVE IN THE POSTGRES DATABASE
 store = {}

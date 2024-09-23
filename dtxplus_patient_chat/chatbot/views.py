@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import JsonResponse
 from django.utils import timezone
 import requests
@@ -24,10 +24,19 @@ def send_message(request):
         request_data = json.loads(request.body)
         user_message = request_data.get('message', '')
         current_time = timezone.now().strftime('%Y-%m-%d %H:%M:%S')
-
+        # HARD CODED FOR JUST ONE USER
+        patient = get_object_or_404(Patient, id=1)
+        patient_info = f"""First Name: {patient.first_name}
+                            Last Name: {patient.last_name}
+                            Date of Birth: {patient.date_of_birth}
+                            Medical Condition: {patient.medical_condition}
+                            Medication Regimen: {patient.medication_regimen}
+                            Last Appointment: {patient.last_appointment}
+                            Next Appointment: {patient.next_appointment}
+                            Doctor Name: {patient.doctor_name}"""
         try:
             response = with_message_history.invoke(
-            {"ability": "medical", "question": user_message},
+            {"question": user_message, "user_info": patient_info},
             # TO-DO: LOAD USER AND CONVERSATION IDS FROM DB
             config={"configurable": {"user_id": "123", "conversation_id": "1"}}
             )
