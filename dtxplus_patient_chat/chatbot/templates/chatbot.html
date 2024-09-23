@@ -93,7 +93,7 @@
         function appendMessage(message, type, timestamp) {
             const div = document.createElement('div');
             div.className = `message ${type}`;
-            div.innerHTML = `${message}<span class="timestamp">${timestamp}</span>`;
+            div.innerHTML = `${message.replace(/\n/g, '<br>')}<span class="timestamp">${timestamp}</span>`;
             chatContainer.appendChild(div);
             chatContainer.scrollTop = chatContainer.scrollHeight; // Auto scroll to bottom
         }
