@@ -13,9 +13,15 @@ from langchain_core.runnables import (
 from pydantic import BaseModel, Field
 from typing import List
 from environs import Env
+import os
 
 env = Env()
 env.read_env()
+
+os.environ["LANGCHAIN_TRACING_V2"]=env.str('LANGCHAIN_TRACING_V2')
+os.environ["LANGCHAIN_API_KEY"]=env.str('LANGCHAIN_API_KEY')
+os.environ["LANGCHAIN_ENDPOINT"]=env.str('LANGCHAIN_ENDPOINT')
+os.environ["LANGCHAIN_PROJECT"]=env.str('LANGCHAIN_PROJECT')
 
 prompt = ChatPromptTemplate.from_messages([
     ("system", """You're an assistant who should only respond to health-related topics such as:
