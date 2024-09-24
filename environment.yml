@@ -7,4 +7,7 @@ dependencies:
   - conda-forge::langchain
   - anaconda::psycopg2
   - conda-forge::environs
+  - langchain-community
+  - conda-forge::sentencepiece
+  - conda-forge::protobuf
 prefix: /home/mafia/.conda/envs/dtxplus
