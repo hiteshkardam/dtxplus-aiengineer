@@ -27,13 +27,13 @@ def send_message(request):
         # HARD CODED FOR JUST ONE USER
         patient = get_object_or_404(Patient, id=1)
         patient_info = f"First Name: {patient.first_name}, \
-                            Last Name: {patient.last_name}, \
-                            Date of Birth: {patient.date_of_birth}, \
-                            Medical Condition: {patient.medical_condition}, \
-                            Medication Regimen: {patient.medication_regimen}, \
-                            Last Appointment: {patient.last_appointment}, \
-                            Next Appointment: {patient.next_appointment}, \
-                            Doctor Name: {patient.doctor_name}"
+            Last Name: {patient.last_name}, \
+            Date of Birth: {patient.date_of_birth}, \
+            Medical Condition: {patient.medical_condition}, \
+            Medication Regimen: {patient.medication_regimen}, \
+            Last Appointment: {patient.last_appointment}, \
+            Next Appointment: {patient.next_appointment}, \
+            Doctor Name: {patient.doctor_name}"
         try:
             response = with_message_history.invoke(
             {"question": user_message, "user_info": patient_info},
