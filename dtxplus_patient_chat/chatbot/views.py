@@ -6,7 +6,7 @@ import json
 from environs import Env
 from langchain_ollama import ChatOllama
 from .rag import with_message_history#, print_messages_from_history
-from chatbot.models import Patient
+from chatbot.models import Patient, MessageStore
 import uuid
 
 env = Env()
@@ -20,13 +20,25 @@ def allchats_view(request):
     pass
 
 def chatbot_view(request):
-    return render(request, 'chatbot.html')
+    messages = MessageStore.objects.all().order_by('created_at')
+    # Prepare messages for the template
+    formatted_messages = []
+    for message in messages:
+        # print(message.message.get("data").get("content"))
+        formatted_messages.append({
+            "text": message.message.get("data").get("content"),
+            "type": "received" if message.message.get("type") == "ai" else "sent",
+            "timestamp": message.created_at.strftime('%Y-%m-%d %H:%M')
+        })
+    
+    return render(request, 'chatbot.html', {'messages': formatted_messages})
 
 def send_message(request):
     if request.method == 'POST':
         request_data = json.loads(request.body)
         user_message = request_data.get('message', '')
         current_time = timezone.now().strftime('%Y-%m-%d %H:%M:%S')
+        
         # HARD CODED FOR JUST ONE USER
         patient = get_object_or_404(Patient, id=1)
         patient_info = f"First Name: {patient.first_name},\

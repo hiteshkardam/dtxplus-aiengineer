@@ -53,7 +53,13 @@
 </head>
 <body>
 
-    <div id="chat-container"></div>
+    <div id="chat-container">
+        {% for message in messages %}
+            <div class="message {{ message.type }}">
+                {{ message.text|linebreaks }}<span class="timestamp">{{ message.timestamp }}</span>
+            </div>
+        {% endfor %}
+    </div>
 
     <div id="input-container">
         <input type="text" id="message-input" placeholder="Type a message..." />
@@ -64,7 +70,15 @@
         const chatContainer = document.getElementById('chat-container');
         const messageInput = document.getElementById('message-input');
         const sendButton = document.getElementById('send-button');
+        // Function to scroll to the bottom of the chat container
+        function scrollToBottom() {
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
 
+        // Scroll to bottom on page load
+        window.onload = function() {
+            scrollToBottom();
+        };
         sendButton.onclick = function() {
             const message = messageInput.value;
             if (message.trim()) {
