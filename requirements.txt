@@ -33,6 +33,7 @@ langchain-community @ file:///home/conda/feedstock_root/build_artifacts/langchai
 langchain-core @ file:///home/conda/feedstock_root/build_artifacts/langchain-core_1726888409762/work
 langchain-huggingface==0.1.0
 langchain-ollama==0.2.0
+langchain-postgres==0.0.12
 langchain-text-splitters @ file:///home/conda/feedstock_root/build_artifacts/langchain-text-splitters_1726389599337/work
 langsmith @ file:///home/conda/feedstock_root/build_artifacts/langsmith_1726805584872/work
 MarkupSafe==2.1.5
@@ -45,9 +46,13 @@ numpy @ file:///croot/numpy_and_numpy_base_1708638617955/work/dist/numpy-1.26.4-
 ollama==0.3.3
 orjson @ file:///croot/orjson_1711143063525/work/target/wheels/orjson-3.9.15-cp312-cp312-linux_x86_64.whl#sha256=620fa7c1189ce4a162e91f49b326ccc3bf5e6dbe6eb0e14aebc1060b5515f2c8
 packaging @ file:///croot/packaging_1720101850331/work
+pgvector==0.2.5
 pillow==10.4.0
 protobuf==4.25.3
 psutil==6.0.0
+psycopg==3.2.2
+psycopg-binary==3.2.2
+psycopg-pool==3.2.3
 psycopg2 @ file:///work/perseverance-python-buildout/croot/psycopg2_1707348232349/work
 pydantic @ file:///croot/pydantic_1725040526370/work
 pydantic-settings @ file:///home/conda/feedstock_root/build_artifacts/pydantic-settings_1726062574860/work

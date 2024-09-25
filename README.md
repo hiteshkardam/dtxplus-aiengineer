@@ -12,6 +12,7 @@ pip freeze > requirements.txt<br/>
 # Local instance
 docker-compose up -d<br/>
 ollama run llama3.1:8b-instruct-fp16<br/>
+conda activate dtxplus</br>
 python dtxplus_patient_chat/manage.py loaddata patient.json<br/>
 python dtxplus_patient_chat/manage.py runserver<br/>
 <br/>
