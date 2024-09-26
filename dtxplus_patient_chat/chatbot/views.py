@@ -5,7 +5,8 @@ import requests
 import json
 from environs import Env
 from langchain_ollama import ChatOllama
-from .rag import with_message_history#, print_messages_from_history
+from .rag import with_summarized_history, summarize_messages
+# from .rag import chain_with_summarization #, print_messages_from_history
 from chatbot.models import Patient, MessageStore
 import uuid
 
@@ -31,7 +32,7 @@ def chatbot_view(request):
             "timestamp": message.created_at.strftime('%Y-%m-%d %H:%M')
         })
     
-    return render(request, 'chatbot.html', {'messages': formatted_messages})
+    return render(request, 'chatbot.html', {'messages': formatted_messages, 'summary_text': summarize_messages(session_id).content})
 
 def send_message(request):
     if request.method == 'POST':
@@ -50,7 +51,7 @@ def send_message(request):
             Next Appointment: {patient.next_appointment},\
             Doctor Name: {patient.doctor_name}"
         try:
-            response = with_message_history.invoke(
+            response = with_summarized_history.invoke(
             {"question": user_message, "user_info": patient_info},
             # TO-DO: LOAD USER AND CONVERSATION IDS FROM DB
             # config={"configurable": {"user_id": 1, "session_id": session_id}}

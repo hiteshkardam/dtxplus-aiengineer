@@ -18,6 +18,10 @@
             padding: 10px;
             margin-bottom: 10px;
         }
+        #summary-box {
+            align-self: flex-start;
+            color: rgb(255, 255, 255);
+        }
         .message {
             margin: 5px 0;
             padding: 10px;
@@ -61,6 +65,12 @@
         {% endfor %}
     </div>
 
+    <div id="summary-box">
+        <p>Summary of the chat:</p>
+        {{ summary_text }}
+        <br><br>
+    </div>
+
     <div id="input-container">
         <input type="text" id="message-input" placeholder="Type a message..." />
         <button id="send-button">Send</button>
@@ -70,6 +80,8 @@
         const chatContainer = document.getElementById('chat-container');
         const messageInput = document.getElementById('message-input');
         const sendButton = document.getElementById('send-button');
+        const summaryBox = document.getElementById('summary-box');
+
         // Function to scroll to the bottom of the chat container
         function scrollToBottom() {
             chatContainer.scrollTop = chatContainer.scrollHeight;
@@ -79,12 +91,18 @@
         window.onload = function() {
             scrollToBottom();
         };
+
         sendButton.onclick = function() {
             const message = messageInput.value;
             if (message.trim()) {
                 const timestamp = new Date().toLocaleString(); // Get current timestamp
                 appendMessage(message, 'sent', timestamp);
                 messageInput.value = '';
+
+                // Hide the summary box after sending the first message
+                if (summaryBox) {
+                    summaryBox.style.display = 'none';
+                }
 
                 // Send message to the server
                 fetch('/send-message/', {
