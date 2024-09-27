@@ -65,11 +65,13 @@
         {% endfor %}
     </div>
 
+    {% if summary_text %}
     <div id="summary-box">
         <p>Summary of the chat:</p>
-        {{ summary_text }}
+            <p>{{ summary_text }}</p>
         <br><br>
     </div>
+    {% endif %}
 
     <div id="input-container">
         <input type="text" id="message-input" placeholder="Type a message..." />

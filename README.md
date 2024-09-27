@@ -1,5 +1,7 @@
 # dtxplus-aiengineer
-Take Home Assignment for DTX+ AI Engineer Role
+Take Home Assignment for DTX+ AI Engineer Role</br>
+![Test Image 1](graph.png)
+</br>
 
 # Setup (using arch linux and conda env)
 conda env create -f environment.yml<br/>
@@ -14,6 +16,8 @@ docker-compose up -d<br/>
 ollama run llama3.1:8b-instruct-fp16<br/>
 conda activate dtxplus</br>
 python dtxplus_patient_chat/chatbot/checkexistdbtable.py</br>
+python dtxplus_patient_chat/manage.py makemigrations</br>
+python dtxplus_patient_chat/manage.py migrate</br>
 python dtxplus_patient_chat/manage.py loaddata superuser.json</br>
 python dtxplus_patient_chat/manage.py loaddata patient.json<br/>
 python dtxplus_patient_chat/manage.py runserver<br/>
@@ -21,3 +25,4 @@ python dtxplus_patient_chat/manage.py runserver<br/>
 superuser:<br/>
 admin<br/>
 adminadmin<br/>
+

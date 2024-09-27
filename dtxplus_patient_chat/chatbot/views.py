@@ -6,6 +6,8 @@ import json
 from environs import Env
 from langchain_ollama import ChatOllama
 from .rag import with_summarized_history, summarize_messages
+from .rag_pydantic_parser import parser_for_neo4j
+from .rag_neo4j import store_entities_in_graph
 # from .rag import chain_with_summarization #, print_messages_from_history
 from chatbot.models import Patient, MessageStore
 import uuid
@@ -32,7 +34,7 @@ def chatbot_view(request):
             "timestamp": message.created_at.strftime('%Y-%m-%d %H:%M')
         })
     
-    return render(request, 'chatbot.html', {'messages': formatted_messages, 'summary_text': summarize_messages(session_id).content})
+    return render(request, 'chatbot.html', {'messages': formatted_messages, 'summary_text': summarize_messages(session_id).content if summarize_messages(session_id) else None})
 
 def send_message(request):
     if request.method == 'POST':
@@ -51,10 +53,11 @@ def send_message(request):
             Next Appointment: {patient.next_appointment},\
             Doctor Name: {patient.doctor_name}"
         try:
+            # ADD DATA TO GRAPH
+            store_entities_in_graph(f"{patient.first_name} {patient.last_name}", parser_for_neo4j(user_message, patient_info))
+
             response = with_summarized_history.invoke(
             {"question": user_message, "user_info": patient_info},
-            # TO-DO: LOAD USER AND CONVERSATION IDS FROM DB
-            # config={"configurable": {"user_id": 1, "session_id": session_id}}
             config={"configurable": {"session_id": session_id}},
             )
             # print_history_messages(conversation_id)
