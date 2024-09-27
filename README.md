@@ -13,6 +13,8 @@ pip freeze > requirements.txt<br/>
 docker-compose up -d<br/>
 ollama run llama3.1:8b-instruct-fp16<br/>
 conda activate dtxplus</br>
+python dtxplus_patient_chat/chatbot/checkexistdbtable.py</br>
+python dtxplus_patient_chat/manage.py loaddata superuser.json</br>
 python dtxplus_patient_chat/manage.py loaddata patient.json<br/>
 python dtxplus_patient_chat/manage.py runserver<br/>
 <br/>

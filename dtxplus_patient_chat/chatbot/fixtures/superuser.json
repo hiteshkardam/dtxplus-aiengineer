@@ -1,0 +1,14 @@
+[
+    {
+        "model": "auth.user",
+        "pk": 1,
+        "fields": {
+            "username": "admin",
+            "password": "pbkdf2_sha256$870000$OGtVZygkqBGACkPXjgRNkm$xPsCv8nUjUFIZQO4s8tkuADreNeMsxoeq5MSvyQ6pXg=",
+            "is_superuser": true,
+            "is_staff": true,
+            "is_active": true,
+            "email": "admin@dtxplus.com"
+        }
+    }
+]

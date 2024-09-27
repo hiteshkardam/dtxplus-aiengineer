@@ -264,3 +264,5 @@ pyrightconfig.json
 
 # End of https://www.toptal.com/developers/gitignore/api/django,python
 
+neo4j_db/
+postgres_data/
